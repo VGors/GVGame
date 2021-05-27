@@ -9,5 +9,4 @@ public class GVGame extends Game {
     public void create() {
         setScreen(new MenuScreen());
     }
-
 }
