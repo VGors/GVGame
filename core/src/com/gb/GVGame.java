@@ -8,25 +8,25 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class GVGame extends ApplicationAdapter {
     private SpriteBatch batch;
-    private Texture img;
+    private Texture mainBackground;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
+        mainBackground = new Texture("mainBackground.png");
     }
 
     @Override
     public void render() {
         ScreenUtils.clear(0.3f, 0.45f, 1, 1);
         batch.begin();
-        batch.draw(img, 0, 0);
+        batch.draw(mainBackground, 0, 0);
         batch.end();
     }
 
     @Override
     public void dispose() {
         batch.dispose();
-        img.dispose();
+        mainBackground.dispose();
     }
 }
