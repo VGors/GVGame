@@ -1,6 +1,5 @@
 package com.gb.base;
 
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 
 public class BaseScreen implements Screen {
