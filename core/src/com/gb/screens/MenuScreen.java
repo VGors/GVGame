@@ -14,38 +14,38 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
     private Vector2 movingObjectPosition;
     private Vector2 movingDirection;
     private Vector2 targetPoint;
+    private Vector2 tmp;
     private int movingSpeed;
-    private float distance, lastDistance;
+    private int maxSpeed;
 
     @Override
     public void show() {
         background = new Texture("mainBackground.png");
         movingObject = new Texture("ladyBird.png");
         movingObjectPosition = new Vector2(17, 28);
-        targetPoint = new Vector2(17, 28);
-        movingDirection = new Vector2(0, 0);
+        targetPoint = new Vector2();
+        movingDirection = new Vector2();
+        tmp = new Vector2();
+        targetPoint.set(movingObjectPosition);
+        movingDirection.setZero();
         movingSpeed = 3;
-        distance = 0;
-        lastDistance = 0;
+        maxSpeed = 15;
         batch = new SpriteBatch();
         Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void render(float delta) {
+        tmp.set(targetPoint);
         batch.begin();
-        distance = targetPoint.cpy().sub(movingObjectPosition).len();
-        if (lastDistance > distance){
-            distance = 1;
-        }
         batch.draw(background, 0, 0);
-        if (distance > 5) {
-            movingObjectPosition.add(movingDirection);
-            batch.draw(movingObject, movingObjectPosition.x, movingObjectPosition.y);
+        if (tmp.sub(movingObjectPosition).len() <= movingDirection.len()) {
+            movingObjectPosition.set(targetPoint);
+            movingDirection.setZero();
         } else {
-            batch.draw(movingObject, movingObjectPosition.x, movingObjectPosition.y);
+            movingObjectPosition.add(movingDirection);
         }
-        lastDistance = distance;
+        batch.draw(movingObject, movingObjectPosition.x, movingObjectPosition.y);
         batch.end();
     }
 
@@ -81,7 +81,7 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
         targetPoint.x = screenX - movingObject.getWidth() / 2;
         targetPoint.y = Gdx.graphics.getHeight() - screenY - movingObject.getHeight() / 2;
         movingDirection = targetPoint.cpy().sub(movingObjectPosition);
-        movingDirection.nor().scl(movingSpeed);
+        movingDirection.nor().setLength(movingSpeed);
         return false;
     }
 
@@ -97,16 +97,15 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
-//        movingSpeed -= amountY;
-        if (movingSpeed > 1 && movingSpeed <= 5){
-            movingSpeed -= amountY;
-            movingDirection.nor().scl(movingSpeed);
-        } else if (movingSpeed <= 1){
-            movingSpeed = 2;
-            movingDirection.nor().scl(movingSpeed);
+        movingSpeed -= amountY;
+        if (movingSpeed > 1 && movingSpeed <= maxSpeed) {
+            movingDirection.nor().setLength(movingSpeed);
+        } else if (movingSpeed <= 1) {
+            movingSpeed = 1;
+            movingDirection.nor().setLength(movingSpeed);
         } else {
-            movingSpeed = 5;
-            movingDirection.nor().scl(movingSpeed);
+            movingSpeed = maxSpeed;
+            movingDirection.nor().setLength(movingSpeed);
         }
         return false;
     }
