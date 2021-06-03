@@ -1,6 +1,5 @@
 package com.gb.screen;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -8,9 +7,9 @@ import com.gb.base.BaseScreen;
 import com.gb.math.Rect;
 import com.gb.sprite.Background;
 
-public class MenuScreen extends BaseScreen implements InputProcessor {
+public class MenuScreen extends BaseScreen {
 
-    private Texture bgTexture;
+    private Texture bg;
     private Background background;
 
 //    private SpriteBatch batch;
@@ -25,8 +24,8 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
     @Override
     public void show() {
         super.show();
-        bgTexture = new Texture("textures/mainBackground.png");
-        background = new Background(bgTexture);
+        bg = new Texture("textures/bg1.png");
+        background = new Background(bg);
 
 //        movingObject = new Texture("ladyBird.png");
 //        movingObjectPosition = new Vector2(17, 28);
@@ -71,30 +70,10 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
     @Override
     public void dispose() {
         super.dispose();
-        bgTexture.dispose();
+        bg.dispose();
 /*        batch.dispose();
         background.dispose();
         movingObject.dispose();*/
-    }
-
-    @Override
-    public boolean keyDown(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
     }
 
     @Override
@@ -103,16 +82,6 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
         targetPoint.y = Gdx.graphics.getHeight() - screenY - movingObject.getHeight() / 2;
         movingDirection = targetPoint.cpy().sub(movingObjectPosition);
         movingDirection.nor().setLength(movingSpeed);*/
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
         return false;
     }
 
