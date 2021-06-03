@@ -54,10 +54,11 @@ public class BaseScreen implements Screen, InputProcessor {
         MatrixUtils.calcTransitionMatrix(worldToGl, worldBounds, glBounds);
         MatrixUtils.calcTransitionMatrix(screenToWorld, screenBounds, worldBounds);
         batch.setProjectionMatrix(worldToGl);
+        resize(worldBounds);
     }
 
     public void resize(Rect worldBounds) {
-        System.out.println("resize worldBounds width = " + worldBounds.getWidth() + " worldBounds height = " + worldBounds.getHeight());
+//        System.out.println("resize worldBounds width = " + worldBounds.getWidth() + " worldBounds height = " + worldBounds.getHeight());
     }
 
     @Override
@@ -98,6 +99,11 @@ public class BaseScreen implements Screen, InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         touch.set(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
+        return false;
+    }
+
+    public boolean touchDown(Vector2 vector2, int pointer, int button) {
+//        touch.set(screenX, screenBounds.getHeight() - screenY).mul(screenToWorld);
         return false;
     }
 
