@@ -16,14 +16,6 @@ public class MenuScreen extends BaseScreen {
     private Background background;
     private MovingObject movingObject;
 
-//    private SpriteBatch batch;
-//    private Vector2 movingObjectPosition;
-//    private Vector2 movingDirection;
-//    private Vector2 targetPoint;
-//    private Vector2 tmp;
-//    private int movingSpeed;
-//    private int maxSpeed;
-
     @Override
     public void show() {
         super.show();
@@ -48,6 +40,7 @@ public class MenuScreen extends BaseScreen {
         ScreenUtils.clear(0.33f, 0.45f, 0.68f, 1);
         batch.begin();
         background.draw(batch);
+        movingObject.draw(batch);
         batch.end();
     }
 
@@ -57,8 +50,6 @@ public class MenuScreen extends BaseScreen {
         bg.dispose();
         mO.dispose();
     }
-
-
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer, int button) {

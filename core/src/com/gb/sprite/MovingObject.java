@@ -22,7 +22,6 @@ public class MovingObject extends Sprite {
 
     }
 
-
     @Override
     public void update(float delta) {
         super.update(delta);
@@ -32,7 +31,6 @@ public class MovingObject extends Sprite {
         } else {
             pos.add(v);
         }
-
     }
 
     @Override
@@ -46,6 +44,5 @@ public class MovingObject extends Sprite {
     public void resize(Rect worldBounds) {
         super.resize(worldBounds);
         setHeightProportion(0.1f);
-//        this.pos.set(worldBounds.pos);
     }
 }
