@@ -38,7 +38,7 @@ public class MenuScreen extends BaseScreen implements InputProcessor {
     public void render(float delta) {
         tmp.set(targetPoint);
         batch.begin();
-        batch.draw(background, 0, 0);
+        batch.draw(background, 0, 0, 1f, 1f);
         if (tmp.sub(movingObjectPosition).len() <= movingDirection.len()) {
             movingObjectPosition.set(targetPoint);
             movingDirection.setZero();
