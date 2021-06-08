@@ -1,7 +1,7 @@
 package com.gb;
 
 import com.badlogic.gdx.Game;
-import com.gb.screens.MenuScreen;
+import com.gb.screen.MenuScreen;
 
 public class GVGame extends Game {
 
@@ -9,4 +9,5 @@ public class GVGame extends Game {
     public void create() {
         setScreen(new MenuScreen());
     }
+
 }
